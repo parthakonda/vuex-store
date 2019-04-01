@@ -1,25 +1,18 @@
 <template>
   <div class="hello">
     {{ custom }}
-    <table>
-      <thead>
-        <tr>
-          <th>Notifications</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in notifications" v-bind:key="item.id">
-          <td>{{ item.message }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <Notification></Notification>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Notification from "@/components/Notification.vue";
 export default {
   name: "HelloWorld",
+  components: {
+    Notification
+  },
   props: {
     msg: String
   },
