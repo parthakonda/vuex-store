@@ -31,13 +31,28 @@ export default new Vuex.Store({
     readCount: state => {
       return state.notifications.length;
     },
-    unreadCount: state => {
+    unReadCount: state => {
       return state.notifications.length;
     },
     totalCount: state => {
       return state.notifications.length;
     }
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    ADD_NOTIFICATION: (state, notification) => {
+      notification.id = state.notifications.length + 1;
+      notification.status = "UNREAD";
+      state.notifications.unshift(notification);
+    },
+    ARCHIVE_NOTIFICATION: (state, notification) => {
+      state.notifications.splice(notification, 1);
+    }
+  },
+  actions: {
+    archiveNotification: (context, notification) => {
+      setTimeout(function() {
+        context.commit("ARCHIVE_NOTIFICATION", notification);
+      }, 1000);
+    }
+  }
 });
